@@ -54,47 +54,94 @@
           </mat-icon>
         </a>
         <mat-menu #menu="matMenu">
-          <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-              <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-              <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-            </ng-container>
-            <ng-container matColumnDef="expand">
-              <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> Messages </th>
               <td mat-cell *matCellDef="let element">
-                <button mat-icon-button aria-label="expand row"
-                  (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-                  <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-                  <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
-                </button>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="https://previews.123rf.com/images/baranq/baranq1603/baranq160300831/53957368-happy-man-sitting-at-desk-in-the-office.jpg" class="avatar avatar-sm  me-3 " style="width: 50px; border-radius: 50%;">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span> from Laur
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="https://folhacerta.com/wp-content/uploads/2022/04/mps-e-entenda-as-novas-regras-do-home-office-20220428164853.jpg.jpg" class="avatar avatar-sm bg-gradient-dark  me-3 " style="width: 50px; border-radius: 50%;">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 day
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <title>credit-card</title>
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g transform="translate(1716.000000, 291.000000)">
+                                <g transform="translate(453.000000, 454.000000)">
+                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
+                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Payment successfully completed
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          2 days
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
               </td>
             </ng-container>
 
-            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-            <ng-container matColumnDef="expandedDetail">
-              <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <div class="example-element-diagram">
-                    <div class="example-element-position"> {{element.position}} </div>
-                    <div class="example-element-symbol"> {{element.symbol}} </div>
-                    <div class="example-element-name"> {{element.name}} </div>
-                    <div class="example-element-weight"> {{element.weight}} </div>
-                  </div>
-                  <div class="example-element-description">
-                    {{element.description}}
-                    <span class="example-element-description-attribution"> -- Wikipedia </span>
-                  </div>
-                </div>
-              </td>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-            <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
-              [class.example-expanded-row]="expandedElement === element"
-              (click)="expandedElement = expandedElement === element ? null : element">
-            </tr>
-            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
         </mat-menu>
       </li>
