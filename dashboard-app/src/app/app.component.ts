@@ -1,8 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { PeriodicElement } from './PeriodicElement';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-root',
@@ -20,5 +21,4 @@ export class AppComponent {
 
   panelOpenState = false;
 
-  title = 'dashboard-app';
 }

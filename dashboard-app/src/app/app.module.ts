@@ -20,11 +20,19 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { LineGraphicsComponent } from './line-graphics/line-graphics.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BarGraphicsComponent } from './bar-graphics/bar-graphics.component';
+import { PieGraphicsComponent } from './pie-graphics/pie-graphics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    LineGraphicsComponent,
+    BarGraphicsComponent,
+    PieGraphicsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,9 @@ import { MatTableModule } from '@angular/material/table';
     MatBadgeModule,
     MatMenuModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
