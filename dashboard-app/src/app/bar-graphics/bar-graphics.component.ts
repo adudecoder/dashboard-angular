@@ -8,7 +8,6 @@ import { multi } from './data';
 })
 export class BarGraphicsComponent {
 
-  single!: any[];
   multi!: any[];
 
   view: [number, number] = [300, 400];
